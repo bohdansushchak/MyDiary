@@ -11,6 +11,7 @@ import butterknife.ButterKnife
 import com.example.bohdansushchak.mydiary.R
 import com.example.bohdansushchak.mydiary.database.Note
 import io.realm.Realm
+import io.realm.RealmConfiguration
 import io.realm.kotlin.createObject
 
 class NoteActivity : AppCompatActivity() {
@@ -26,7 +27,8 @@ class NoteActivity : AppCompatActivity() {
         setContentView(R.layout.activity_note)
         ButterKnife.bind(this)
 
-        realm = Realm.getDefaultInstance()
+        val config = RealmConfiguration.Builder().deleteRealmIfMigrationNeeded().build()
+        realm = Realm.getInstance(config)
 
         supportActionBar?.setDisplayShowHomeEnabled(true)
     }
