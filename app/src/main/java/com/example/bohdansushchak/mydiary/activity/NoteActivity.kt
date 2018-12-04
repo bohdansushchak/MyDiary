@@ -1,40 +1,33 @@
 package com.example.bohdansushchak.mydiary.activity
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import com.example.bohdansushchak.mydiary.R
 
-class MainActivity : AppCompatActivity() {
+class NoteActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_note)
 
-
+        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
-
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
-        inflater.inflate(R.menu.main_menu, menu)
+        inflater.inflate(R.menu.note_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
         when(item?.itemId){
-            R.id.menu_create -> {
 
-                val intent = Intent(this, NoteActivity::class.java)
-                startActivity(intent)
-                return true
-            }
-
-            R.id.menu_lock -> {
+            R.id.menu_save ->
+            {
 
                 return true
             }

@@ -5,4 +5,9 @@
     <string name="menu_add_item">Create</string>
     <string name="menu_Lock_item">Lock</string>
     <string name="menu_main_item">Menu</string>
+    <string name="menu_note_save">Save</string>
+
+
+    <string name="ed_hint_title">Title</string>
+    <string name="ed_hint_content">Content</string>
 </resources>
