@@ -34,14 +34,14 @@ public class CEditText extends AppCompatEditText {
     @Override
     public void setTypeface(Typeface tf, int style) {
         fontPath = getContext().getString(R.string.font_path);
-        tf = Typeface.createFromAsset(getContext().getAssets(), "fonts/courgette_regular.ttf");
+        tf = Typeface.createFromAsset(getContext().getAssets(), fontPath);
         super.setTypeface(tf, style);
     }
 
     @Override
     public void setTypeface(Typeface tf) {
         fontPath = getContext().getString(R.string.font_path);
-        tf = Typeface.createFromAsset(getContext().getAssets(), "fonts/courgette_regular.ttf");
+        tf = Typeface.createFromAsset(getContext().getAssets(), fontPath);
         super.setTypeface(tf);
     }
 }

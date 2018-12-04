@@ -26,21 +26,21 @@ public class CTextView extends android.support.v7.widget.AppCompatTextView {
 
     private void init() {
         fontPath = getContext().getString(R.string.font_path);
-        Typeface font = Typeface.createFromAsset(getContext().getAssets(), "fonts/courgette_regular.ttf");
+        Typeface font = Typeface.createFromAsset(getContext().getAssets(), fontPath);
         this.setTypeface(font);
     }
 
     @Override
     public void setTypeface(Typeface tf, int style) {
         fontPath = getContext().getString(R.string.font_path);
-        tf = Typeface.createFromAsset(getContext().getAssets(), "fonts/courgette_regular.ttf");
+        tf = Typeface.createFromAsset(getContext().getAssets(), fontPath);
         super.setTypeface(tf, style);
     }
 
     @Override
     public void setTypeface(Typeface tf) {
         fontPath = getContext().getString(R.string.font_path);
-        tf = Typeface.createFromAsset(getContext().getAssets(), "fonts/courgette_regular.ttf");
+        tf = Typeface.createFromAsset(getContext().getAssets(), fontPath);
         super.setTypeface(tf);
     }
 }

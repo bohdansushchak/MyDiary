@@ -1,5 +1,6 @@
 package com.example.bohdansushchak.mydiary.activity
 
+import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -11,6 +12,7 @@ import butterknife.ButterKnife
 import com.example.bohdansushchak.mydiary.view.CEditText
 import com.example.bohdansushchak.mydiary.R
 import com.example.bohdansushchak.mydiary.database.Note
+import com.example.bohdansushchak.mydiary.view.CTextView
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import io.realm.kotlin.createObject
@@ -22,10 +24,13 @@ class NoteActivity : AppCompatActivity() {
 
     private lateinit var realm : Realm
 
-    @BindView(R.id.ed_Title) lateinit var edTitle: EditText
-    @BindView(R.id.ed_Content) lateinit var edContent: CEditText
-    @BindView(R.id.tv_Date) lateinit var tvDate: TextView
+    private val pattern = "dd.M.yyyy hh:mm:ss"
 
+    @BindView(R.id.ed_Title) lateinit var edTitle: CEditText
+    @BindView(R.id.ed_Content) lateinit var edContent: CEditText
+    @BindView(R.id.tv_Date) lateinit var tvDate: CTextView
+
+    @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note)
@@ -36,7 +41,7 @@ class NoteActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+        val sdf = SimpleDateFormat(pattern)
         val currentDate = sdf.format(Date())
 
         tv_Date.text = currentDate.toString()

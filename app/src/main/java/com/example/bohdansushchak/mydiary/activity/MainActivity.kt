@@ -3,7 +3,7 @@ package com.example.bohdansushchak.mydiary.activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
+import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 
@@ -26,7 +26,11 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var realm: Realm
 
-    @BindView(R.id.rv_Main) lateinit var recyclerView : RecyclerView
+    @BindView(R.id.rv_Main)
+    lateinit var recyclerView: RecyclerView
+
+    @BindView(R.id.floatingActionButton)
+    lateinit var fab: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +43,6 @@ class MainActivity : AppCompatActivity() {
         initViews()
     }
 
-
     fun initViews() {
 
         val notes = realm.where<Note>()
@@ -47,6 +50,12 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = MyRecyclerAdapter(this, notes)
+
+        fab.setOnClickListener {
+
+            val intent = Intent(this, NoteActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -56,19 +65,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item?.itemId){
-            R.id.menu_create -> {
-
-                val intent = Intent(this, NoteActivity::class.java)
-                startActivity(intent)
-                return true
-            }
+        when (item?.itemId) {
 
             R.id.menu_lock -> {
 
                 val result = realm.where<Note>().count()
 
-                Toast.makeText(this,"size = " + result.toString(), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "size = " + result.toString(), Toast.LENGTH_SHORT).show()
 
                 return true
             }
