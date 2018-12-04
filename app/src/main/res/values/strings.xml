@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">MyDiary</string>
 
+    <string name="font_path">fonts/courgette_regular.ttf</string>
+
+
 
     <string name="menu_add_item">Create</string>
     <string name="menu_Lock_item">Lock</string>
@@ -10,4 +13,6 @@
 
     <string name="ed_hint_title">Title</string>
     <string name="ed_hint_content">Content</string>
+
+
 </resources>

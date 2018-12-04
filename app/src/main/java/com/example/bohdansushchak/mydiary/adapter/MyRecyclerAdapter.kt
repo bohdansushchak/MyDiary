@@ -11,7 +11,8 @@ import io.realm.RealmChangeListener
 import io.realm.RealmResults
 import kotlinx.android.synthetic.main.item_main_view.view.*
 
-open class MyRecyclerAdapter(val context: Context, var notes:RealmResults<Note>) : RecyclerView.Adapter<ViewHolder>(), RealmChangeListener<RealmResults<Note>> {
+open class MyRecyclerAdapter(val context: Context, var notes:RealmResults<Note>)
+    : RecyclerView.Adapter<ViewHolder>(), RealmChangeListener<RealmResults<Note>> {
 
     init {
         notes.addChangeListener(this)

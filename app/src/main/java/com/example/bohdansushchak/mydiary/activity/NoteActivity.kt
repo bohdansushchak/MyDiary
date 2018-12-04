@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
+import com.example.bohdansushchak.mydiary.view.CEditText
 import com.example.bohdansushchak.mydiary.R
 import com.example.bohdansushchak.mydiary.database.Note
 import io.realm.Realm
@@ -22,7 +23,7 @@ class NoteActivity : AppCompatActivity() {
     private lateinit var realm : Realm
 
     @BindView(R.id.ed_Title) lateinit var edTitle: EditText
-    @BindView(R.id.ed_Content) lateinit var edContent: EditText
+    @BindView(R.id.ed_Content) lateinit var edContent: CEditText
     @BindView(R.id.tv_Date) lateinit var tvDate: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {

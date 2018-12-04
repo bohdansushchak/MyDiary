@@ -20,9 +20,6 @@ import com.example.bohdansushchak.mydiary.database.Note
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import io.realm.kotlin.where
-import kotlinx.android.synthetic.main.activity_note.*
-import java.text.SimpleDateFormat
-import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
