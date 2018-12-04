@@ -13,6 +13,9 @@ import com.example.bohdansushchak.mydiary.database.Note
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import io.realm.kotlin.createObject
+import kotlinx.android.synthetic.main.activity_note.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class NoteActivity : AppCompatActivity() {
 
@@ -31,6 +34,11 @@ class NoteActivity : AppCompatActivity() {
         realm = Realm.getInstance(config)
 
         supportActionBar?.setDisplayShowHomeEnabled(true)
+
+        val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+        val currentDate = sdf.format(Date())
+
+        tv_Date.text = currentDate.toString()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

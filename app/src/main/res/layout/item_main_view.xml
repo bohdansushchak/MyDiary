@@ -5,11 +5,23 @@
               android:layout_height="wrap_content"
               android:padding="5dp">
 
+    <TextView
+            android:text="@string/app_name"
+            android:id="@+id/tv_Date"
+            android:textSize="10sp"
+            android:textColor="@color/textColorLightGray"
+            android:layout_gravity="end"
+            android:layout_marginEnd="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     <TextView
             android:id="@+id/tv_Title"
             android:textSize="20sp"
             android:text="Title"
+            android:maxLines="1"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:textColor="@color/textColorBlack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -18,6 +30,8 @@
             android:id="@+id/tv_description"
             android:textSize="14sp"
             android:text="description"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:singleLine="false"
             android:textColor="@color/textColorGray"
             android:maxLines="2"

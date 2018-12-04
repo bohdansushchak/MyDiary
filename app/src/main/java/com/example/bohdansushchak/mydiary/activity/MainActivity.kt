@@ -3,6 +3,7 @@ package com.example.bohdansushchak.mydiary.activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 
@@ -19,6 +20,9 @@ import com.example.bohdansushchak.mydiary.database.Note
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import io.realm.kotlin.where
+import kotlinx.android.synthetic.main.activity_note.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -34,6 +38,12 @@ class MainActivity : AppCompatActivity() {
 
         val config = RealmConfiguration.Builder().deleteRealmIfMigrationNeeded().build()
         realm = Realm.getInstance(config)
+
+        initViews()
+    }
+
+
+    fun initViews() {
 
         val notes = realm.where<Note>()
             .findAll()
