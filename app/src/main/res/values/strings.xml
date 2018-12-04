@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MyDiary</string>
+
+
+    <string name="menu_add_item">Create</string>
+    <string name="menu_Lock_item">Lock</string>
+    <string name="menu_main_item">Menu</string>
 </resources>
