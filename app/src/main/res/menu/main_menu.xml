@@ -11,7 +11,7 @@
             android:id="@+id/menu_lock"
             android:title="@string/menu_Lock_item"
             android:icon="@android:drawable/ic_lock_lock"
-            android:enabled="false"
+            android:visible="true"
             app:showAsAction="always"/>
 
     <item android:title="@string/menu_main_item"/>
