@@ -18,6 +18,7 @@ open class MyRecyclerAdapter(val context: Context, var notes: RealmResults<Note>
 
     init {
         notes.addChangeListener(this)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ViewHolder {
@@ -26,6 +27,7 @@ open class MyRecyclerAdapter(val context: Context, var notes: RealmResults<Note>
 
     override fun getItemCount(): Int {
         return notes.size
+
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

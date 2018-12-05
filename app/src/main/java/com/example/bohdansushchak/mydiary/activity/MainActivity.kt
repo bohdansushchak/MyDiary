@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView
 
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import butterknife.BindView
 import butterknife.ButterKnife
 
@@ -20,7 +19,6 @@ import com.example.bohdansushchak.mydiary.database.Note
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import io.realm.kotlin.where
-import java.io.Serializable
 
 
 class MainActivity : AppCompatActivity() {
@@ -77,6 +75,10 @@ class MainActivity : AppCompatActivity() {
 
             R.id.menu_lock -> {
 
+                finish()
+
+                val intent = Intent(this, FingerPrintActivity::class.java)
+                startActivity(intent)
                 return true
             }
         }

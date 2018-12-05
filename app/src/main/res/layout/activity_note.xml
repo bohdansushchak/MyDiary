@@ -40,7 +40,6 @@
                     android:hint="@string/ed_hint_title"
                     android:background="@null"
                     android:lines="1"
-
                     android:inputType="textAutoComplete|textCapSentences"/>
 
 

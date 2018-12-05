@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools" package="com.example.bohdansushchak.mydiary">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.example.bohdansushchak.mydiary">
+
+    <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
 
     <application
             android:name=".MyApplication"
@@ -20,9 +24,15 @@
         </activity>
         <activity android:name=".activity.NoteActivity">
         </activity>
+
         <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.NoteActivity" />
+                android:value=".activity.NoteActivity"/>
+
+        <activity android:name=".activity.FingerPrintActivity">
+        </activity>
+        <activity android:name=".activity.PasswordActivity">
+        </activity>
     </application>
 
 </manifest>
