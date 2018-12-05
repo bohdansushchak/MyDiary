@@ -6,6 +6,7 @@ import android.support.v7.widget.AppCompatEditText;
 import android.util.AttributeSet;
 import com.example.bohdansushchak.mydiary.R;
 
+
 public class CEditText extends AppCompatEditText {
 
     private String fontPath;

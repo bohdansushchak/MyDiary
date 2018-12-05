@@ -4,6 +4,8 @@
     <string name="font_path">fonts/courgette_regular.ttf</string>
 
 
+    <string name="txt_note_saved">Your note has been saved</string>
+    <string name="txt_note_not_saved">Your note has not saved</string>
 
     <string name="menu_add_item">Create</string>
     <string name="menu_Lock_item">Lock</string>

@@ -11,19 +11,21 @@ import io.realm.RealmChangeListener
 import io.realm.RealmResults
 import kotlinx.android.synthetic.main.item_main_view.view.*
 
-open class MyRecyclerAdapter(val context: Context, var notes:RealmResults<Note>)
-    : RecyclerView.Adapter<ViewHolder>(), RealmChangeListener<RealmResults<Note>> {
+open class MyRecyclerAdapter(val context: Context, var notes: RealmResults<Note>) :
+    RecyclerView.Adapter<MyRecyclerAdapter.ViewHolder>(), RealmChangeListener<RealmResults<Note>> {
+
+    var onItemClick: ((Int) -> Unit)? = null
 
     init {
         notes.addChangeListener(this)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ViewHolder{
+    override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_main_view, parent, false))
     }
 
     override fun getItemCount(): Int {
-       return notes.size
+        return notes.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -34,12 +36,18 @@ open class MyRecyclerAdapter(val context: Context, var notes:RealmResults<Note>)
     }
 
     override fun onChange(t: RealmResults<Note>) {
-       notifyDataSetChanged()
+        notifyDataSetChanged()
     }
-}
 
-open class ViewHolder (view: View) : RecyclerView.ViewHolder(view){
-    val tvTitle = view.tv_Title
-    val tvDescription = view.tv_description
-    val tvDate = view.tv_Date
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val tvTitle = view.tv_Title
+        val tvDescription = view.tv_description
+        val tvDate = view.tv_Date
+
+        init {
+            itemView.setOnClickListener {
+                onItemClick?.invoke(adapterPosition)
+            }
+        }
+    }
 }

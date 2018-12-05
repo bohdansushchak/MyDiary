@@ -20,6 +20,7 @@ import com.example.bohdansushchak.mydiary.database.Note
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import io.realm.kotlin.where
+import java.io.Serializable
 
 
 class MainActivity : AppCompatActivity() {
@@ -48,8 +49,15 @@ class MainActivity : AppCompatActivity() {
         val notes = realm.where<Note>()
             .findAll()
 
+        var adapter = MyRecyclerAdapter(this, notes)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = MyRecyclerAdapter(this, notes)
+        recyclerView.adapter = adapter
+        adapter.onItemClick = {position: Int? ->
+
+            val intent = Intent(this, NoteActivity::class.java)
+            intent.putExtra("Position", position)
+            startActivity(intent)
+        }
 
         fab.setOnClickListener {
 
