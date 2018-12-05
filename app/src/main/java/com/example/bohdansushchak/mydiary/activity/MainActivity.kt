@@ -77,10 +77,6 @@ class MainActivity : AppCompatActivity() {
 
             R.id.menu_lock -> {
 
-                val result = realm.where<Note>().count()
-
-                Toast.makeText(this, "size = " + result.toString(), Toast.LENGTH_SHORT).show()
-
                 return true
             }
         }

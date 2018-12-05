@@ -45,7 +45,7 @@ class NoteActivity : AppCompatActivity() {
         val config = RealmConfiguration.Builder().deleteRealmIfMigrationNeeded().build()
         realm = Realm.getInstance(config)
 
-        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         initView()
     }
@@ -61,6 +61,20 @@ class NoteActivity : AppCompatActivity() {
             tv_Date.text = note?.date
             edContent.setText(note?.content)
             edTitle.setText(note?.title)
+
+/*
+            edTitle.clearFocus()
+            edContent.clearFocus()
+*/
+            edTitle.setFocusableInTouchMode(false)
+            edTitle.setFocusable(false)
+            edTitle.setFocusableInTouchMode(true)
+            edTitle.setFocusable(true)
+
+            //val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            //imm.hideSoftInputFromWindow(edTitle.windowToken, 0)
+            //imm.showSoftInput(edContent, 0)
+
 
         } else {
             val sdf = SimpleDateFormat(pattern)
@@ -117,7 +131,16 @@ class NoteActivity : AppCompatActivity() {
                 }
                 return true
             }
+
+            android.R.id.home -> {
+                onBackPressed()
+            }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        realm.close()
     }
 }
