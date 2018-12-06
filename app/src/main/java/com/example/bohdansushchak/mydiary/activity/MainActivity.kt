@@ -15,6 +15,7 @@ import butterknife.ButterKnife
 import com.example.bohdansushchak.mydiary.R
 import com.example.bohdansushchak.mydiary.adapter.MyRecyclerAdapter
 import com.example.bohdansushchak.mydiary.database.Note
+import com.example.bohdansushchak.mydiary.utils.isPermissionGranted
 
 import io.realm.Realm
 import io.realm.RealmConfiguration
@@ -36,6 +37,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         ButterKnife.bind(this)
 
+/*
+        if (isPermissionGranted(android.Manifest.permission.USE_FINGERPRINT)) {
+            val intent = Intent(this, FingerPrintActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+*/
+
         val config = RealmConfiguration.Builder().deleteRealmIfMigrationNeeded().build()
         realm = Realm.getInstance(config)
 
@@ -50,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         var adapter = MyRecyclerAdapter(this, notes)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
-        adapter.onItemClick = {position: Int? ->
+        adapter.onItemClick = { position: Int? ->
 
             val intent = Intent(this, NoteActivity::class.java)
             intent.putExtra("Position", position)
@@ -75,10 +84,15 @@ class MainActivity : AppCompatActivity() {
 
             R.id.menu_lock -> {
 
-                finish()
+                val intent : Intent
 
-                val intent = Intent(this, FingerPrintActivity::class.java)
+                if (isPermissionGranted(android.Manifest.permission.USE_FINGERPRINT))
+                    intent = Intent(this, FingerPrintActivity::class.java)
+                else
+                    intent = Intent(this, PasswordActivity::class.java)
+
                 startActivity(intent)
+                finish()
                 return true
             }
         }

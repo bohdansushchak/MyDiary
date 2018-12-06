@@ -24,7 +24,7 @@
 
     <com.example.bohdansushchak.mydiary.view.CTextView
             android:text="@string/tv_login_fingerprint"
-            android:textSize="18sp"
+            android:textSize="22sp"
             android:textColor="@color/textColorBlack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,7 +35,8 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" app:layout_constraintVertical_bias="0.681"/>
+            android:layout_marginEnd="8dp"
+            app:layout_constraintVertical_bias="0.681"/>
 
     <com.example.bohdansushchak.mydiary.view.CTextView
             android:text="@string/tv_login_password"

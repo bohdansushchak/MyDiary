@@ -125,9 +125,9 @@ class NoteActivity : AppCompatActivity() {
             R.id.menu_save -> {
                 try {
                     saveNote()
-                    Toast.makeText(this, R.string.txt_note_saved, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, R.string.suc_msg_note_saved, Toast.LENGTH_SHORT).show()
                 } catch (e: Exception) {
-                    Toast.makeText(this, R.string.txt_note_not_saved, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, R.string.err_msg_note_not_saved, Toast.LENGTH_SHORT).show()
                 }
                 return true
             }

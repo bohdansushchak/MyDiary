@@ -4,14 +4,23 @@
     <string name="font_path">fonts/courgette_regular.ttf</string>
 
 
-    <string name="txt_note_saved">Your note has been saved</string>
-    <string name="txt_note_not_saved">Your note has not saved</string>
+    <!-- error messages-->
+    <string name="err_msg_fingerprint_sensor_missing">Your Device does not have a Fingerprint Sensor. Please implement other default authentication mechanism.</string>
+    <string name="err_msg_fingerprint_authentication_not_enabled">Fingerprint authentication permission not enabled</string>
+    <string name="err_msg_register_atleast_one_finger">Register at least one fingerprint in Settings</string>
+    <string name="err_msg_lock_screen_security_not_enabled">Lock screen security not enabled in Settings</string>
+    <string name="err_msg_note_not_saved">Your note has not saved</string>
 
+    <!-- successful messages -->
+    <string name="suc_msg_note_saved">Your note has been saved</string>
+
+    <!-- -->
     <string name="tv_login_fingerprint">Log in using fingerprint scanner</string>
     <string name="tv_login_password">Log in with password</string>
 
+
     <string name="menu_add_item">Create</string>
-    <string name="menu_Lock_item">Lock</string>
+    <string name="menu_lock_item">Lock</string>
     <string name="menu_main_item">Menu</string>
     <string name="menu_note_save">Save</string>
 
