@@ -3,6 +3,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              android:background="@color/itemColorBackground"
               android:padding="5dp">
 
     <com.example.bohdansushchak.mydiary.view.CTextView

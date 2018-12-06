@@ -9,16 +9,18 @@
 
     <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_main"
+            android:background="@color/rcColorBackground"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/item_main_view">
     </android.support.v7.widget.RecyclerView>
 
     <android.support.design.widget.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:foreground="@drawable/ic_plus"
+            android:foregroundGravity="center"
             android:focusable="true"
-            app:srcCompat="@android:drawable/ic_menu_add"
             android:id="@+id/floatingActionButton"
             android:layout_marginBottom="30dp"
             app:layout_constraintBottom_toBottomOf="@+id/rv_main"

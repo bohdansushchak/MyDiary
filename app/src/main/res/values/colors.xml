@@ -9,4 +9,8 @@
     <color name="textColorGray">#3e3c3c</color>
     <color name="textColorLightGray">#817c7c</color>
     <color name="textColorRed">#f41c35</color>
+
+
+    <color name="rcColorBackground">#e1e0e0</color>
+    <color name="itemColorBackground">#ffffff</color>
 </resources>

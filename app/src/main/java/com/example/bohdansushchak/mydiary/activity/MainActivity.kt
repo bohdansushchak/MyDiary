@@ -1,9 +1,12 @@
 package com.example.bohdansushchak.mydiary.activity
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
+import android.support.v4.content.ContextCompat
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 
@@ -64,6 +67,13 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, NoteActivity::class.java)
             intent.putExtra("Position", position)
             startActivity(intent)
+        }
+
+        val horizontalDecoration = DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL)
+        val divider : Drawable? = ContextCompat.getDrawable(this, R.drawable.item_divider)
+        if (divider != null) {
+            horizontalDecoration.setDrawable(divider)
+            recyclerView.addItemDecoration(horizontalDecoration)
         }
 
         fab.setOnClickListener {
