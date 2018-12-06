@@ -41,7 +41,7 @@ import javax.crypto.SecretKey
 
 @TargetApi(Build.VERSION_CODES.M)
 @RequiresApi(Build.VERSION_CODES.M)
-class FingerPrintActivity : AppCompatActivity(), FingerprintHelper.AuthenticationCallback {
+class FingerPrintActivity : BaseActivity(), FingerprintHelper.AuthenticationCallback {
 
     private var keyStore: KeyStore? = null
     private var cipher: Cipher? = null

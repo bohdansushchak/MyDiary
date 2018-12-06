@@ -1,7 +1,6 @@
 package com.example.bohdansushchak.mydiary.activity
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -11,7 +10,7 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import com.example.bohdansushchak.mydiary.R
 
-class PasswordActivity : AppCompatActivity() {
+class PasswordActivity : BaseActivity() {
 
     @BindView(R.id.ed_pin_code) lateinit var edPinCode: EditText
 
@@ -29,12 +28,10 @@ class PasswordActivity : AppCompatActivity() {
                 onBackPressed()
                 return true
             }
-
         }
 
         return super.onOptionsItemSelected(item)
     }
-
 
     @OnClick(R.id.btn_login)
     fun login(view: View){
@@ -42,7 +39,7 @@ class PasswordActivity : AppCompatActivity() {
         if(edPinCode.text.isNotEmpty()){
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            finish()
+            clearBackStack()
         }
     }
 }
