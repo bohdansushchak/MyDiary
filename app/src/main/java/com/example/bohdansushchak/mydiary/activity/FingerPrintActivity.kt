@@ -14,9 +14,11 @@ import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyPermanentlyInvalidatedException
 import android.security.keystore.KeyProperties
 import android.support.annotation.RequiresApi
-import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
+import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.example.bohdansushchak.mydiary.helpers.FingerprintHelper
@@ -42,6 +44,9 @@ class FingerPrintActivity : AppCompatActivity(), FingerprintHelper.Authenticatio
 
     private var keyStore: KeyStore? = null
     private var cipher: Cipher? = null
+
+    @BindView(R.id.tv_error) lateinit var tvError: TextView
+    @BindView(R.id.iv_fingerprint) lateinit var ivFingerprint: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,12 +82,12 @@ class FingerPrintActivity : AppCompatActivity(), FingerprintHelper.Authenticatio
                             val cryptoObject = FingerprintManager.CryptoObject(cipher)
                             val helper = FingerprintHelper(this)
                             helper.startAuth(fingerprintManager, cryptoObject, this)
+
                         }
                     }
                 }
             }
         }
-
     }
 
 
@@ -161,10 +166,13 @@ class FingerPrintActivity : AppCompatActivity(), FingerprintHelper.Authenticatio
 
     companion object {
         // Variable used for storing the key in the Android Keystore container
-        private val KEY_NAME = "androidHive"
+        private const val KEY_NAME = "androidHive"
     }
 
     override fun onAuthenticationSucceeded() {
+
+        ivFingerprint.setImageResource(R.drawable.fingerprint_success)
+        tvError.text = ""
 
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
@@ -174,11 +182,8 @@ class FingerPrintActivity : AppCompatActivity(), FingerprintHelper.Authenticatio
 
     override fun onAuthenticationFailed(errorMessage: String) {
 
-        val alertDilog = AlertDialog.Builder(this).create()
-        alertDilog.setTitle("onAuthenticationFailed")
-        alertDilog.setMessage("Snackbar action performed")
-        alertDilog.show()
-
+        ivFingerprint.setImageResource(R.drawable.fingerprint_wrong)
+        tvError.text = getString(R.string.err_msg_wrong_finger)
     }
 
     @OnClick(R.id.tv_login_password)

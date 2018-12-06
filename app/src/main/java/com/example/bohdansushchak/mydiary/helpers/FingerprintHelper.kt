@@ -9,7 +9,6 @@ import android.os.CancellationSignal
 import android.support.annotation.RequiresApi
 import android.support.v4.app.ActivityCompat
 
-
 @RequiresApi(Build.VERSION_CODES.M)
 class FingerprintHelper (private val context: Context) : FingerprintManager.AuthenticationCallback() {
     private lateinit var authenticationCallback: AuthenticationCallback

@@ -9,6 +9,7 @@
     <string name="err_msg_fingerprint_authentication_not_enabled">Fingerprint authentication permission not enabled</string>
     <string name="err_msg_register_atleast_one_finger">Register at least one fingerprint in Settings</string>
     <string name="err_msg_lock_screen_security_not_enabled">Lock screen security not enabled in Settings</string>
+    <string name="err_msg_wrong_finger">Wrong finger</string>
     <string name="err_msg_note_not_saved">Your note has not saved</string>
 
     <!-- successful messages -->
@@ -25,8 +26,11 @@
     <string name="menu_note_save">Save</string>
 
 
+    <!-- hints for views -->
     <string name="ed_hint_title">Title</string>
     <string name="ed_hint_content">Content</string>
+    <string name="ed_hint_password">Password</string>
+    <string name="btn_text_login">Log in</string>
 
 
 </resources>

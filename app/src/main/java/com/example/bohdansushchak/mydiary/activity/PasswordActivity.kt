@@ -1,16 +1,19 @@
 package com.example.bohdansushchak.mydiary.activity
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
+import android.widget.EditText
+import butterknife.BindView
 import butterknife.ButterKnife
+import butterknife.OnClick
 import com.example.bohdansushchak.mydiary.R
 
 class PasswordActivity : AppCompatActivity() {
 
-
-
-
+    @BindView(R.id.ed_pin_code) lateinit var edPinCode: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,5 +33,16 @@ class PasswordActivity : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+
+    @OnClick(R.id.btn_login)
+    fun login(view: View){
+
+        if(edPinCode.text.isNotEmpty()){
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

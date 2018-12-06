@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var realm: Realm
 
-    @BindView(R.id.rv_Main)
+    @BindView(R.id.rv_main)
     lateinit var recyclerView: RecyclerView
 
     @BindView(R.id.floatingActionButton)
@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         val notes = realm.where<Note>()
             .findAll()
 
-        var adapter = MyRecyclerAdapter(this, notes)
+        val adapter = MyRecyclerAdapter(this, notes)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
         adapter.onItemClick = { position: Int? ->
