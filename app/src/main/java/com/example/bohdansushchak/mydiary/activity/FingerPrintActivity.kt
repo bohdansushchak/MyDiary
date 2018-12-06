@@ -16,6 +16,7 @@ import android.security.keystore.KeyProperties
 import android.support.annotation.RequiresApi
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import butterknife.BindView
@@ -40,13 +41,15 @@ import javax.crypto.SecretKey
 
 @TargetApi(Build.VERSION_CODES.M)
 @RequiresApi(Build.VERSION_CODES.M)
-class FingerPrintActivity : AppCompatActivity(), FingerprintHelper.AuthenticationCallback  {
+class FingerPrintActivity : AppCompatActivity(), FingerprintHelper.AuthenticationCallback {
 
     private var keyStore: KeyStore? = null
     private var cipher: Cipher? = null
 
-    @BindView(R.id.tv_error) lateinit var tvError: TextView
-    @BindView(R.id.iv_fingerprint) lateinit var ivFingerprint: ImageView
+    @BindView(R.id.tv_error)
+    lateinit var tvError: TextView
+    @BindView(R.id.iv_fingerprint)
+    lateinit var ivFingerprint: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,14 +72,12 @@ class FingerPrintActivity : AppCompatActivity(), FingerprintHelper.Authenticatio
             } else {
                 // Check whether at least one fingerprint is registered
                 if (!fingerprintManager.hasEnrolledFingerprints()) {
-                  //  errorText.setText(R.string.error_message_register_atleast_one_finger)
-                }
-                else {
+                    //  errorText.setText(R.string.error_message_register_atleast_one_finger)
+                } else {
                     // Checks whether lock screen security is enabled or not
                     if (!keyguardManager.isKeyguardSecure) {
-                    //    errorText.setText(R.string.error_message_lock_screen_security_not_enabled)
-                    }
-                    else {
+                        //    errorText.setText(R.string.error_message_lock_screen_security_not_enabled)
+                    } else {
                         generateKey()
                         if (cipherInit()) {
                             val cryptoObject = FingerprintManager.CryptoObject(cipher)
@@ -113,12 +114,17 @@ class FingerPrintActivity : AppCompatActivity(), FingerprintHelper.Authenticatio
 
         try {
             keyStore!!.load(null)
-            keyGenerator.init(KeyGenParameterSpec.Builder(KEY_NAME,
-                KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT).setBlockModes(
-                KeyProperties.BLOCK_MODE_CBC)
-                .setUserAuthenticationRequired(true)
-                .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_PKCS7)
-                .build())
+            keyGenerator.init(
+                KeyGenParameterSpec.Builder(
+                    KEY_NAME,
+                    KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
+                ).setBlockModes(
+                    KeyProperties.BLOCK_MODE_CBC
+                )
+                    .setUserAuthenticationRequired(true)
+                    .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_PKCS7)
+                    .build()
+            )
             keyGenerator.generateKey()
         } catch (e: NoSuchAlgorithmException) {
             throw RuntimeException(e)
@@ -134,7 +140,8 @@ class FingerPrintActivity : AppCompatActivity(), FingerprintHelper.Authenticatio
     @TargetApi(Build.VERSION_CODES.M)
     private fun cipherInit(): Boolean {
         try {
-            cipher = Cipher.getInstance("${KeyProperties.KEY_ALGORITHM_AES}/${KeyProperties.BLOCK_MODE_CBC}/${KeyProperties.ENCRYPTION_PADDING_PKCS7}")
+            cipher =
+                    Cipher.getInstance("${KeyProperties.KEY_ALGORITHM_AES}/${KeyProperties.BLOCK_MODE_CBC}/${KeyProperties.ENCRYPTION_PADDING_PKCS7}")
         } catch (e: NoSuchAlgorithmException) {
             throw RuntimeException("Failed to get Cipher", e)
         } catch (e: NoSuchPaddingException) {
@@ -184,7 +191,11 @@ class FingerPrintActivity : AppCompatActivity(), FingerprintHelper.Authenticatio
 
         ivFingerprint.setImageResource(R.drawable.fingerprint_wrong)
         tvError.text = getString(R.string.err_msg_wrong_finger)
+
+        val anim = AnimationUtils.loadAnimation(this, R.anim.shake)
+        ivFingerprint.startAnimation(anim)
     }
+
 
     @OnClick(R.id.tv_login_password)
     fun clickPassword(view: View) {

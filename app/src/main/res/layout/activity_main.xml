@@ -18,7 +18,7 @@
     <android.support.design.widget.FloatingActionButton
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:foreground="@drawable/ic_plus"
+            android:foreground="@drawable/ic_plus_white"
             android:foregroundGravity="center"
             android:focusable="true"
             android:id="@+id/floatingActionButton"
