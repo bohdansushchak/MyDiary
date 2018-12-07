@@ -1,6 +1,7 @@
 package com.example.bohdansushchak.mydiary.activity
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.drawable.Drawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -19,7 +20,6 @@ import butterknife.ButterKnife
 import com.example.bohdansushchak.mydiary.R
 import com.example.bohdansushchak.mydiary.adapter.MyRecyclerAdapter
 import com.example.bohdansushchak.mydiary.database.Note
-import com.example.bohdansushchak.mydiary.utils.isPermissionGranted
 
 import io.realm.Realm
 import io.realm.RealmConfiguration
@@ -30,10 +30,11 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var realm: Realm
 
+    private lateinit var sharedPreferences: SharedPreferences
+
     private val LOG_METH_NONE = "none"
     private val LOG_METH_PASSWORD = "password"
     private val LOG_METH_BIOMETRICS = "biometrics"
-
 
     @BindView(R.id.rv_main)
     lateinit var recyclerView: RecyclerView
@@ -46,7 +47,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         ButterKnife.bind(this)
 
-        checkLoginethod()
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+
+        val isLock = intent.getBooleanExtra("isLock", true)
+
+        checkLoginethod(isLock)
 
         val config = RealmConfiguration.Builder().deleteRealmIfMigrationNeeded().build()
         realm = Realm.getInstance(config)
@@ -54,13 +59,10 @@ class MainActivity : AppCompatActivity() {
         initViews()
     }
 
-    private fun checkLoginethod() {
-
-        val isLock = intent.getBooleanExtra("isLock", true)
+    private fun checkLoginethod(isLock: Boolean) {
 
         if (isLock) {
 
-            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
             val name = sharedPreferences.getString("pref_login_method", LOG_METH_NONE)
 
             when (name) {
@@ -119,15 +121,13 @@ class MainActivity : AppCompatActivity() {
 
             R.id.menu_lock -> {
 
-                val intent: Intent
+                val method = sharedPreferences.getString("pref_login_method", LOG_METH_NONE)
 
-                if (isPermissionGranted(android.Manifest.permission.USE_FINGERPRINT))
-                    intent = Intent(this, FingerPrintActivity::class.java)
-                else
-                    intent = Intent(this, PasswordActivity::class.java)
+                if (method == LOG_METH_NONE) {
+                    finish()
+                } else
+                    checkLoginethod(true)
 
-                startActivity(intent)
-                finish()
                 return true
             }
 
