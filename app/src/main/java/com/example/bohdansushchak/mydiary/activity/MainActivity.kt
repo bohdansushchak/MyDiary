@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
@@ -29,6 +30,11 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var realm: Realm
 
+    private val LOG_METH_NONE = "none"
+    private val LOG_METH_PASSWORD = "password"
+    private val LOG_METH_BIOMETRICS = "biometrics"
+
+
     @BindView(R.id.rv_main)
     lateinit var recyclerView: RecyclerView
 
@@ -40,13 +46,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         ButterKnife.bind(this)
 
-/*
-        if (isPermissionGranted(android.Manifest.permission.USE_FINGERPRINT)) {
-            val intent = Intent(this, FingerPrintActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-*/
+        checkLoginethod()
 
         val config = RealmConfiguration.Builder().deleteRealmIfMigrationNeeded().build()
         realm = Realm.getInstance(config)
@@ -54,7 +54,32 @@ class MainActivity : AppCompatActivity() {
         initViews()
     }
 
-    fun initViews() {
+    private fun checkLoginethod() {
+
+        val isLock = intent.getBooleanExtra("isLock", true)
+
+        if (isLock) {
+
+            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+            val name = sharedPreferences.getString("pref_login_method", LOG_METH_NONE)
+
+            when (name) {
+                LOG_METH_PASSWORD -> {
+                    val intent = Intent(this, PasswordActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+
+                LOG_METH_BIOMETRICS -> {
+                    val intent = Intent(this, FingerPrintActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            }
+        }
+    }
+
+    private fun initViews() {
 
         val notes = realm.where<Note>()
             .findAll()
@@ -70,7 +95,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val horizontalDecoration = DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL)
-        val divider : Drawable? = ContextCompat.getDrawable(this, R.drawable.item_divider)
+        val divider: Drawable? = ContextCompat.getDrawable(this, R.drawable.item_divider)
         if (divider != null) {
             horizontalDecoration.setDrawable(divider)
             recyclerView.addItemDecoration(horizontalDecoration)
@@ -94,7 +119,7 @@ class MainActivity : AppCompatActivity() {
 
             R.id.menu_lock -> {
 
-                val intent : Intent
+                val intent: Intent
 
                 if (isPermissionGranted(android.Manifest.permission.USE_FINGERPRINT))
                     intent = Intent(this, FingerPrintActivity::class.java)
@@ -106,8 +131,7 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
 
-            R.id.menu_settings ->
-            {
+            R.id.menu_settings -> {
                 val intent = Intent(this, SettingsActivity::class.java)
                 startActivity(intent)
             }

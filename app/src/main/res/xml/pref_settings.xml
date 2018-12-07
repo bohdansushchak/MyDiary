@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
-        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <ListPreference
-                android:defaultValue="0"
-                android:title="@string/pref_choose_log"
-                android:entries="@array/listLoginMethodArray"
-                android:entryValues="@array/listLoginMethodValues"
-                android:key="pref_list_login_method"/>
+    <ListPreference
+            android:defaultValue="0"
+            android:title="@string/pref_choose_log"
+            android:entries="@array/listLoginMethodArray"
+            android:entryValues="@array/listLoginMethodValues"
+            android:key="pref_login_method"
+            android:negativeButtonText="Cancel"/>
+
+    <EditTextPreference
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_set_your_password"
+            android:key="password"
+            android:negativeButtonText="Cancel"
+            android:digits="0123456789"
+            android:maxLength="4" android:inputType="number|numberSigned|numberDecimal|phone"
+            android:numeric="integer|signed"/>
 
 </PreferenceScreen>

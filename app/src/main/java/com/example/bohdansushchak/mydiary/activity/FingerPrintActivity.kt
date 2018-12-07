@@ -15,7 +15,6 @@ import android.security.keystore.KeyPermanentlyInvalidatedException
 import android.security.keystore.KeyProperties
 import android.support.annotation.Nullable
 import android.support.annotation.RequiresApi
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
@@ -186,6 +185,7 @@ class FingerPrintActivity : BaseActivity(), FingerprintHelper.AuthenticationCall
         tvError.text = ""
 
         val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("isLock", false)
         startActivity(intent)
 
         finish()

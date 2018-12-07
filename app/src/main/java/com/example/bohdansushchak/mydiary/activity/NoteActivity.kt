@@ -37,7 +37,7 @@ class NoteActivity : AppCompatActivity() {
     @Nullable
     @BindView(R.id.ed_Content)
     lateinit var edContent: CEditText
-    
+
     @Nullable
     @BindView(R.id.tv_Date)
     lateinit var tvDate: CTextView

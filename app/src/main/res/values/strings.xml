@@ -3,17 +3,15 @@
 
     <string name="font_path">fonts/courgette_regular.ttf</string>
 
-
     <!-- error messages-->
-    <string name="err_msg_fingerprint_sensor_missing">Your Device does not have a Fingerprint Sensor. Please implement
-        other default authentication mechanism.
-    </string>
     <string name="err_msg_fingerprint_authentication_not_enabled">Fingerprint authentication permission not enabled
     </string>
     <string name="err_msg_register_atleast_one_finger">Register at least one fingerprint in Settings</string>
     <string name="err_msg_lock_screen_security_not_enabled">Lock screen security not enabled in Settings</string>
     <string name="err_msg_wrong_finger">Wrong finger</string>
     <string name="err_msg_note_not_saved">Your note has not saved</string>
+    <string name="err_msg_wrong_password">Wrong password</string>
+    <string name="err_msg_password_is_empty">Password is empty</string>
 
     <!-- successful messages -->
     <string name="suc_msg_note_saved">Your note has been saved</string>
@@ -38,17 +36,17 @@
 
     <!-- pref strings-->
     <string name="pref_choose_log">Choose login method</string>
-
+    <string name="pref_set_your_password">Set your passwrod</string>
     <string-array name="listLoginMethodArray">
         <item>None</item>
-        <item>Pin code</item>
+        <item>Password</item>
         <item>Biometrics</item>
     </string-array>
 
     <string-array name="listLoginMethodValues">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
+        <item>none</item>
+        <item>password</item>
+        <item>biometrics</item>
     </string-array>
 
 
