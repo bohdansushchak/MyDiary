@@ -201,6 +201,7 @@ class FingerPrintActivity : BaseActivity(), FingerprintHelper.AuthenticationCall
     }
 
 
+    @Nullable
     @OnClick(R.id.tv_login_password)
     fun clickPassword(view: View) {
 

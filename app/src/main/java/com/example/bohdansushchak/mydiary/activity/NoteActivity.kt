@@ -120,6 +120,7 @@ class NoteActivity : AppCompatActivity() {
                 note?.title = title
                 note?.content = content
                 note?.date = date
+
             }
         }
     }

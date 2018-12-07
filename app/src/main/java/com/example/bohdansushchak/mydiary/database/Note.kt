@@ -1,13 +1,15 @@
 package com.example.bohdansushchak.mydiary.database
 
 import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
 import java.io.Serializable
 
-open class Note : RealmObject(), Serializable
-{
-    var title: String? = null
+open class Note(
 
-    var content: String? = null
+    var title: String? = null,
+
+    var content: String? = null,
 
     var date: String? = null
-}
+
+) : RealmObject()

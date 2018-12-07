@@ -21,10 +21,13 @@
     <string name="tv_login_password">Log in with password</string>
 
 
+    <!-- menu title-->
     <string name="menu_add_item">Create</string>
     <string name="menu_lock_item">Lock</string>
     <string name="menu_main_item">Menu</string>
     <string name="menu_note_save">Save</string>
+    <string name="popup_edit">Edit</string>
+    <string name="popup_remove">Remove</string>
 
 
     <!-- hints for views -->

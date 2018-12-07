@@ -96,6 +96,26 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        adapter.onLongItemClick = { position: Int?, itemId: Int ->
+
+            when (itemId) {
+
+                R.id.popup_edit -> {
+                    val intent = Intent(this, NoteActivity::class.java)
+                    intent.putExtra("Position", position)
+                    startActivity(intent)
+                }
+
+                R.id.popup_remove -> {
+
+                    realm.executeTransaction { realm ->
+                        val note = realm.where<Note>().findAll().get(position!!)
+                        note?.deleteFromRealm()
+                    }
+                }
+            }
+        }
+
         val horizontalDecoration = DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL)
         val divider: Drawable? = ContextCompat.getDrawable(this, R.drawable.item_divider)
         if (divider != null) {
@@ -144,3 +164,4 @@ class MainActivity : AppCompatActivity() {
         realm.close()
     }
 }
+

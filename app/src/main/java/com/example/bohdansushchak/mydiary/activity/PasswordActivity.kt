@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.support.annotation.Nullable
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
@@ -15,9 +16,11 @@ import com.example.bohdansushchak.mydiary.view.CTextView
 
 class PasswordActivity : BaseActivity() {
 
+    @Nullable
     @BindView(R.id.ed_pin_code)
     lateinit var edPassword: EditText
 
+    @Nullable
     @BindView(R.id.tv_password_error)
     lateinit var tvPasswordError: CTextView
 
@@ -46,6 +49,7 @@ class PasswordActivity : BaseActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    @Nullable
     @OnClick(R.id.btn_login)
     fun login(view: View) {
 
