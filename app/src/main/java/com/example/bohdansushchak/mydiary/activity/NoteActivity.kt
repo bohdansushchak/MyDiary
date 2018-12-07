@@ -1,14 +1,17 @@
 package com.example.bohdansushchak.mydiary.activity
 
 import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.annotation.Nullable
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import butterknife.BindView
 import butterknife.ButterKnife
+import butterknife.OnClick
 import com.example.bohdansushchak.mydiary.view.CEditText
 import com.example.bohdansushchak.mydiary.R
 import com.example.bohdansushchak.mydiary.database.Note
@@ -26,7 +29,7 @@ class NoteActivity : AppCompatActivity() {
 
     private lateinit var realm: Realm
 
-    private val pattern = "dd.M.yyyy hh:mm:ss"
+    private val DATE_FORMAT = "dd.MM.YYYY"
 
     private var note: Note? = null
 
@@ -79,11 +82,10 @@ class NoteActivity : AppCompatActivity() {
 
             //val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             //imm.hideSoftInputFromWindow(edTitle.windowToken, 0)
-            //imm.showSoftInput(edContent, 0)
-
+            //imm.showSoftInput(edContent, 0
 
         } else {
-            val sdf = SimpleDateFormat(pattern)
+            val sdf = SimpleDateFormat(DATE_FORMAT)
             val currentDate = sdf.format(Date())
 
             tv_Date.text = currentDate.toString()
@@ -123,6 +125,30 @@ class NoteActivity : AppCompatActivity() {
 
             }
         }
+    }
+
+    @Nullable
+    @OnClick(R.id.tv_Date)
+    fun setDate(view: View){
+
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+        val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, y, monthOfYear, dayOfMonth ->
+
+            val sdf = SimpleDateFormat(DATE_FORMAT)
+
+            val cDate = Calendar.getInstance()
+            cDate.set(Calendar.YEAR, year)
+            cDate.set(Calendar.MONTH, monthOfYear)
+            cDate.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+            tvDate.text = sdf.format(cDate.timeInMillis)
+
+        }, year, month, day)
+        dpd.show()
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
