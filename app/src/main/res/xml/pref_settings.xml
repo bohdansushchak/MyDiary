@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <ListPreference
+                android:defaultValue="0"
+                android:title="@string/pref_choose_log"
+                android:entries="@array/listLoginMethodArray"
+                android:entryValues="@array/listLoginMethodValues"
+                android:key="pref_list_login_method"/>
+
+</PreferenceScreen>

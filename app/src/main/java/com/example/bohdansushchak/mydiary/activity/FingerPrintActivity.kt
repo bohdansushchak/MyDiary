@@ -13,6 +13,7 @@ import android.os.Bundle
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyPermanentlyInvalidatedException
 import android.security.keystore.KeyProperties
+import android.support.annotation.Nullable
 import android.support.annotation.RequiresApi
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -46,8 +47,11 @@ class FingerPrintActivity : BaseActivity(), FingerprintHelper.AuthenticationCall
     private var keyStore: KeyStore? = null
     private var cipher: Cipher? = null
 
+    @Nullable
     @BindView(R.id.tv_error)
     lateinit var tvError: TextView
+
+    @Nullable
     @BindView(R.id.iv_fingerprint)
     lateinit var ivFingerprint: ImageView
 

@@ -105,6 +105,12 @@ class MainActivity : AppCompatActivity() {
                 finish()
                 return true
             }
+
+            R.id.menu_settings ->
+            {
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
+            }
         }
         return super.onOptionsItemSelected(item)
     }

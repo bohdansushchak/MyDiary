@@ -3,6 +3,7 @@ package com.example.bohdansushchak.mydiary.activity
 import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.annotation.Nullable
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -29,10 +30,15 @@ class NoteActivity : AppCompatActivity() {
 
     private var note: Note? = null
 
+    @Nullable
     @BindView(R.id.ed_Title)
     lateinit var edTitle: CEditText
+
+    @Nullable
     @BindView(R.id.ed_Content)
     lateinit var edContent: CEditText
+    
+    @Nullable
     @BindView(R.id.tv_Date)
     lateinit var tvDate: CTextView
 
