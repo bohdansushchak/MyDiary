@@ -7,6 +7,7 @@ import android.preference.PreferenceManager
 import android.support.annotation.Nullable
 import android.view.MenuItem
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.EditText
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -57,10 +58,23 @@ class PasswordActivity : BaseActivity() {
         val pass = edPassword.text?.trim().toString()
 
         if (pass.isEmpty())
+        {
             tvPasswordError.text = getString(R.string.err_msg_password_is_empty)
+
+            val anim = AnimationUtils.loadAnimation(this, R.anim.shake)
+            tvPasswordError.startAnimation(anim)
+        }
+
         else if (!pass.equals(savedPassword)) {
+
             tvPasswordError.text = getString(R.string.err_msg_wrong_password)
+
+            val anim = AnimationUtils.loadAnimation(this, R.anim.shake)
+            tvPasswordError.startAnimation(anim)
+
         } else {
+            tvPasswordError.text = null
+
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("isLock", false)
             startActivity(intent)
