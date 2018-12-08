@@ -67,6 +67,7 @@ class NoteActivity : AppCompatActivity() {
             note = realm.where<Note>().findAll()?.get(pos)
 
         if (note != null) {
+
             tv_Date.text = note?.date
             edContent.setText(note?.content)
             edTitle.setText(note?.title)
@@ -141,7 +142,7 @@ class NoteActivity : AppCompatActivity() {
             val sdf = SimpleDateFormat(DATE_FORMAT)
 
             val cDate = Calendar.getInstance()
-            cDate.set(Calendar.YEAR, year)
+            cDate.set(Calendar.YEAR, y)
             cDate.set(Calendar.MONTH, monthOfYear)
             cDate.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
