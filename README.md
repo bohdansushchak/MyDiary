@@ -1,6 +1,6 @@
 # MyDiary
 
-This application can help you for managing notes in your personal diary. MyDiary using authentication by password or you can log in by fingerprint scanner.
+This application can help you for managing notes in your personal journal. For protection your notes you can set authentication method by fingerprint scanner or password.
 
 
 
